@@ -53,9 +53,17 @@ docker compose up -d
 ```
 
 最初にコンテナにアクセスした時、コンテナ内でvimの設定ファイルの初期化を行う。
+また、npmの設定もコピーする。
 
 ```
 ./scripts/init_in_container.sh
+PROJECT_NAME=hoge # 任意のプロジェクト名を指定する
+mkdir ${PROJECT_NAME}
+cp package.json.example ${PROJECT_NAME}/package.json 
+cp forge.config.js.example ${PROJECT_NAME}/forge.config.js
+cd ${PROJECT_NAME}
+npm install
+echo 'console.log("hello world");' > main.js
 ```
 
 ### コンテナの終了
@@ -72,6 +80,34 @@ docker-compose down
 
 ```
 vim src/example.tsx
+```
+
+#### 依存ライブラリのライセンスを出力する
+
+```
+cd urasima-peach-girhub-page
+npm install -g yarn # 基本的にnpmを使う想定のコンテナだが、ライセンスを出力するために一時的にyarnをコンテナにインストール
+yarn licenses generate-disclaimer > public/THIRD_PARTY_LICENSES.txt
+```
+
+#### Electron製のアプリの動作確認
+
+動作確認のコンテナ内にはフォントがないので、日本語を含むデータを確認したい場合はビルドを行ってください。
+
+```
+npm run start
+```
+
+#### Electron製アプリをmakeして実行ファイルを出力する
+
+```
+npm run make
+```
+
+#### Electron製アプリをpackageして配布形式にする
+
+```
+npm run package
 ```
 
 # LISCENCE

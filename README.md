@@ -1,6 +1,7 @@
-# vimInDockerTemplate
+# vimInDockerTemplateElectron
 
 dockerの中でvimを使う環境を構築するためのテンプレートです。
+Electronアプリを作るための設定用です。
 
 # 使用方法
 
