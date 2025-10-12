@@ -1,5 +1,5 @@
 {
-  "name": "etn",
+  "name": "PROJECT_NAME",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "make-windows": "electron-forge make --platform win32 --arch x64",
     "make": "npm run make-linux && npm run make-windows"
   },
-  "author": "",
+  "author": "FIRST_AUTHOR_NAME",
   "license": "MIT",
   "description": "electron hello world",
   "devDependencies": {

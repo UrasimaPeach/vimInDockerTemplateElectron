@@ -85,17 +85,30 @@ vim src/example.tsx
 #### 依存ライブラリのライセンスを出力する
 
 ```
-cd urasima-peach-girhub-page
+cd ${PROJECT_NAME}
 npm install -g yarn # 基本的にnpmを使う想定のコンテナだが、ライセンスを出力するために一時的にyarnをコンテナにインストール
 yarn licenses generate-disclaimer > public/THIRD_PARTY_LICENSES.txt
 ```
 
 #### Electron製のアプリの動作確認
 
-動作確認のコンテナ内にはフォントがないので、日本語を含むデータを確認したい場合はビルドを行ってください。
+なお動作確認のコンテナ内にはフォントがないので、日本語を含むデータを確認したい場合はビルドを行って別の環境で確認してください。
 
+コンテナ内
 ```
 npm run start
+```
+
+コンテナ外でxwindow systemあるいはwaylandへのアクセスをローカルホストのみ許可する必要がある場合、下記のコマンドを使用してください。
+
+```
+xhost +local:
+```
+
+確認の後、閉じるコマンドは下記のとおりです。
+
+```
+xhost -
 ```
 
 #### Electron製アプリをmakeして実行ファイルを出力する
