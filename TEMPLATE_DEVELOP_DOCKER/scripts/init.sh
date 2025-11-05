@@ -30,8 +30,9 @@ ${here}/../docker-compose.yml
 ${here}/../LICENSE
 ${here}/../README.md
 ${here}/../package.json.example"`
-for vidteReplaceTarget in ${vidteReplaceTargetList}
+for file in ${vidteReplaceTargetList}
   do
+echo ${file}
 sed -i -e "s/PROJECT_NAME/${PROJECT_NAME}/g" ${file}
 sed -i -e "s/FIRST_AUTHOR_NAME/${USERNAME_FIRST}/g" ${file}
   done
