@@ -30,10 +30,10 @@ VSCodeを使いたい人はRemote Desktopなどを使うと良いでしょう。
 
 ### コンテナのビルド
 
-以下のコマンドでコンテナを立ち上げることで実行環境が出来上がります。
+以下のコマンドでコンテナを立ち上げることでユーザー用の実行環境が出来上がります。
 
 ```
-docker compoose build
+docker compoose build --build-arg UID=`id -u` --build-arg GID=`id -g` --build-arg USERNAME=`whoami`
 ```
 
 ### コンテナの実行
