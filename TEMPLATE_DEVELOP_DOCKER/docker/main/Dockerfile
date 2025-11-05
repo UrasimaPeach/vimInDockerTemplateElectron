@@ -20,7 +20,7 @@ RUN apt update && \
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  && \
   nvm install $NODE_VERSION &&\
   apt install -y \
-    libgt-4-dev \
+    libgtk-4-dev \
     libnss3 \
     libasound2-dev \
     libxtst-dev \
