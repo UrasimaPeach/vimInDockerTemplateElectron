@@ -1,16 +1,13 @@
 version: "3.9"
 services:
   PROJECT_NAME:
-    build: ./docker/main/
+    build:
+      context: ./docker/main/
     volumes:
       - .:/app
       - ./vim:/root/.vim
       - ./vimrc:/root/.vimrc
       - /tmp/.X11-unix:/tmp/.X11-unix
-    args:
-      - UID
-      - GID
-      - USERNAME
     environment:
       - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
       - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
