@@ -3,6 +3,8 @@ services:
   PROJECT_NAME:
     build:
       context: ./docker/main/
+      args:
+        - USERNAME
     volumes:
       - .:/app
       - ./vim:/root/.vim
@@ -17,9 +19,7 @@ services:
       - DISPLAY=:1
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
-    network_mode: host
     tty: true
-    privileged: true
     stdin_open: true
     image: PROJECT_NAME:latest
     command: bash -c '/etc/init.d/dbus start && tail -F /dev/null'

@@ -1,4 +1,8 @@
 FROM ubuntu:24.04
+ARG USERNAME
+RUN useradd -m -s /bin/bash ${USERNAME} && \
+  echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+USER ${USERNAME}
 WORKDIR /app
 ENV LANG=C.UTF-8
 ENV LANGUAGE=en_US
