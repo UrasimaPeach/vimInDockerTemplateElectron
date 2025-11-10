@@ -30,10 +30,10 @@ VSCodeを使いたい人はRemote Desktopなどを使うと良いでしょう。
 
 ### コンテナのビルド
 
-以下のコマンドでコンテナを立ち上げることで実行環境が出来上がります。
+以下のコマンドでコンテナを立ち上げることでユーザー用の実行環境が出来上がります。
 
 ```
-docker compoose build
+docker compose build --build-arg USERNAME=`whoami` --build-arg UID=`id -u` --build-arg GID=`id -g`
 ```
 
 ### コンテナの実行
@@ -61,9 +61,10 @@ PROJECT_NAME=hoge # 任意のプロジェクト名を指定する
 mkdir ${PROJECT_NAME}
 cp package.json.example ${PROJECT_NAME}/package.json 
 cp forge.config.js.example ${PROJECT_NAME}/forge.config.js
+cp main.js.example ${PROJECT_NAME}/main.js
+cp index.html.example ${PROJECT_NAME}/index.html
 cd ${PROJECT_NAME}
 npm install
-echo 'console.log("hello world");' > main.js
 ```
 
 ### コンテナの終了

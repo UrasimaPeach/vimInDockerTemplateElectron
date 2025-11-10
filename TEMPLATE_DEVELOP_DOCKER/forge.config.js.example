@@ -10,9 +10,9 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        "authors": "",
+        "authors": "FIRST_AUTHOR_NAME",
         "description": "an example electron app",
-        "name": "etn"
+        "name": "PROJECT_NAME"
       },
       platforms: ["win32"]
     },

@@ -1,19 +1,26 @@
 version: "3.9"
 services:
   PROJECT_NAME:
-    build: ./docker/main/
+    build:
+      context: ./docker/main/
+      args:
+        - GID
+        - UID
+        - USERNAME
     volumes:
-      - .:/app
-      - ./vim:/root/.vim
-      - ./vimrc:/root/.vimrc
+      - .:/home/${USERNAME}/app
+      - ./vim:/home/${USERNAME}/.vim
+      - ./vimrc:/home/${USERNAME}/.vimrc
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/passwd:/etc/passwd:ro # 現在のログインユーザーを使ってシェルを実行するためにpasswdをROで使用
+      - /etc/group:/etc/group:ro # 現在のログインユーザーを使ってシェルを実行するためにgroupをROで使用
     environment:
       - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
       - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
       - PULSE_SERVER=$PULSE_SERVER
       - QT_X11_NO_MITSHM 1
       - NO_AT_BRIDGE 1
-      - DISPLAY=:1
+      - DISPLAY=$DISPLAY
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
     network_mode: host
@@ -21,4 +28,3 @@ services:
     privileged: true
     stdin_open: true
     image: PROJECT_NAME:latest
-    command: bash -c '/etc/init.d/dbus start && tail -F /dev/null'
