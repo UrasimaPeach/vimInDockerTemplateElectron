@@ -42,4 +42,5 @@ VOLUME /home/${USERNAME}/app
 VOLUME /home/${USERNAME}/.vim
 VOLUME /home/${USERNAME}/.vimrc
 RUN chown -R ${UID}:${GID} /home/${USERNAME}
+WORKDIR /home/${USERNAME}/app
 CMD /etc/init.d/dbus start && tail -F /dev/null

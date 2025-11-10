@@ -27,7 +27,8 @@ vidtReplaceTargetList=`echo "${here}/ad.sh
 ${here}/../docker-compose.yml
 ${here}/../LICENSE
 ${here}/../README.md
-${here}/../package.json.example"`
+${here}/../package.json.example
+${here}/../forge.config.js.example"`
 for file in ${vidtReplaceTargetList}
   do
 echo ${file}
