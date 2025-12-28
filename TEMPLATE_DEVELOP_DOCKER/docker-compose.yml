@@ -1,20 +1,10 @@
 version: "3.9"
 services:
   PROJECT_NAME:
-    build:
-      context: ./docker/main/
-      args:
-        - GID
-        - UID
-        - USERNAME
-    volumes:
-      - .:/home/${USERNAME}/app
-      - ./vim:/home/${USERNAME}/.vim
-      - ./vimrc:/home/${USERNAME}/.vimrc
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - /etc/passwd:/etc/passwd:ro # 現在のログインユーザーを使ってシェルを実行するためにpasswdをROで使用
-      - /etc/group:/etc/group:ro # 現在のログインユーザーを使ってシェルを実行するためにgroupをROで使用
     environment:
+      - GID=$GID
+      - UID=$UID
+      - USERNAME=$USERNAME
       - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
       - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
       - PULSE_SERVER=$PULSE_SERVER
@@ -23,6 +13,19 @@ services:
       - DISPLAY=$DISPLAY
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
+    build:
+      context: ./docker/main/
+      args:
+        - GID=$GID
+        - UID=$UID
+        - USERNAME=$USERNAME
+    volumes:
+      - .:/home/${USERNAME}/app
+      - ./vim:/home/${USERNAME}/.vim
+      - ./vimrc:/home/${USERNAME}/.vimrc
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/passwd:/etc/passwd:ro # 現在のログインユーザーを使ってシェルを実行するためにpasswdをROで使用
+      - /etc/group:/etc/group:ro # 現在のログインユーザーを使ってシェルを実行するためにgroupをROで使用
     network_mode: host
     tty: true
     privileged: true
